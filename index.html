@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <title>Countodown Clock</title>
+        <style type="text/css" rel="stylesheet">
+            .time
+            {
+                box-shadow: 4px 4px 40px;
+                border-radius: 16px;
+                text-align: center;
+                padding: 1px;
+                background-color: #ddd;
+                position: absolute;
+                top:42%;
+                height:28%;
+                left:28%;
+                width:46%;
+            }
+
+            .info
+            {
+                font-family:Verdana, Geneva, Tahoma, sans-serif;
+                font-size:400%;
+            }
+
+            .display
+            {
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+
+            .note
+            {
+                text-align: center;
+                font-size: 200%;
+                font-family:Georgia, 'Times New Roman', Times, serif;
+                box-shadow: 4px 4px 40px;
+                height:7%;
+                width:46%;
+                position: absolute;
+                left:28%;
+                top:29%;
+                padding:0.2%;
+                border-radius: 16px;
+                background-color: #ddd;
+            }
+        </style>
+    </head>
+    
+    <body onload=showTime()>
+        <div class="note">TIME  TO  NEXT  PROJECT</div>
+        <table class="time"> 
+            <tr class="info">
+                <td id="days" class="cell"></td>
+                <td>:</td>
+                <td id="hours" class="cell"></td>
+                <td>:</td>
+                <td id="minutes" class="cell"></td>
+                <td>:</td>
+                <td id="seconds" class="cell"></td>
+            </tr>
+            <tr>
+                <td class="display">Days</td>
+                <td></td>
+                <td class="display">Hours</td>
+                <td></td>
+                <td class="display">Minutes</td>
+                <td></td>
+                <td class="display">Seconds</td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            function showTime()
+            {
+                var currDate=new Date();
+                var remDate=new Date(2019,9,6);
+
+                var currTime=currDate.getTime();
+                var remTime=remDate.getTime();
+
+                var time=remTime-currTime;
+
+                var s=Math.floor(time/1000);
+                var m=Math.floor(s/60);
+                var h=Math.floor(m/60);
+                var d=Math.floor(h/24);
+
+                h=h%24;
+                m=m%60;
+                s=s%60;
+
+                if(h<10)
+                h="0" + h;
+                if(m<10)
+                m="0" + m;
+                if(s<10)
+                s="0" + s;
+
+                document.getElementById("days").innerText=d;
+                document.getElementById("seconds").innerText=s;
+                document.getElementById("minutes").innerText=m;
+                document.getElementById("hours").innerText=h;
+
+                setTimeout(showTime,1000);
+            }
+        </script>
+    </body>
+</html>
